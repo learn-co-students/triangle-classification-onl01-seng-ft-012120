@@ -11,15 +11,22 @@ class Triangle
     valid = true
     type = " "
 
-    if side_1 <= 0 || side_2 <= 0 || side_3 <= 0
+    # if @side_1 <= 0 || @side_2 <= 0 || @side_3 <= 0
+    #   valid = false
+    #   type = nil
+    # elsif @side_1 + @side_2 <= @side_3 || 
+    #   @side_2 + @side_3 <= @side_1 || @side_3 + @side_1 <= @side_2
+    #   valid = false
+    #   type = nil
+    # else 
+    #   valid = true
+    # end
+
+    if (@side_1 <= 0 || @side_2 <= 0 || @side_3 <= 0) ||
+      (@side_1 + @side_2 <= @side_3 || @side_2 + @side_3 <= @side_1 ||
+        @side_3 + @side_1 <= @side_2)
       valid = false
       type = nil
-    elsif side_1 + side_2 <= side_3 || 
-      side_2 + side_3 <= side_1 || side_3 + side_1 <= side_2
-      valid = false
-      type = nil
-    else 
-      valid = true
     end
 
     if valid == false
@@ -43,5 +50,4 @@ class Triangle
   class TriangleError < StandardError
     # triangle error code
   end
-
 end
