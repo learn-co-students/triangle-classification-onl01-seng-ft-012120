@@ -1,23 +1,25 @@
 class Triangle
-  attr_accessor :length_1, :length_2, :length_3
+  attr_accessor :a, :b, :c
   
-  def initialize(length_1, length_2, length_3)
-    @length_1 = length_1
-    @length_2 = length_2
-    @length_3 = length_3
+  def initialize(a, b, c)
+    @a = a
+    @b = b
+    @c = c
   end
   
   def kind
-    if @length_1 > 0 && @length_2 > 0 && @length_3 > 0
-      if ((@length_1 == @length_2) && (@length_1 == @length_3) && (@length_2 == @length_3))
-        :equilateral
-      elsif ((@length_1 == @length_2) || (@length_1 == @length_3) || (@length_2 == @length_3))
-        :isosceles
+    if @a > 0 && @b > 0 && @c > 0
+      if (@a + @b) > @c && (@a + @c) > @b && (@b + @c) > @a
+        if ((@a == @b) && (@a == @c) && (@b == @c))
+          :equilateral
+        elsif ((@a == @b) || (@a == @c) || (@b == @c))
+          :isosceles
+        else
+          :scalene
+        end
       else
-        :scalene
+        raise TriangleError
       end
-    else
-      raise TriangleError
     end
   end
   
